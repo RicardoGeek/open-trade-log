@@ -62,7 +62,6 @@ export function TradeList() {
             <tr>
               <th>Symbol</th>
               <th>Direction</th>
-              <th>Media</th>
               <th>Entry Date</th>
               <th>Entry Price</th>
               <th>Exit Price</th>
@@ -74,13 +73,13 @@ export function TradeList() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="9" style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
+                <td colSpan="8" style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
                   Loading trades...
                 </td>
               </tr>
             ) : trades.length === 0 ? (
               <tr>
-                <td colSpan="9" style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
+                <td colSpan="8" style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
                   No trades recorded yet. Time to hit the markets!
                 </td>
               </tr>
@@ -95,14 +94,11 @@ export function TradeList() {
                   }}>
                     {trade.direction}
                   </td>
-                  <td>
-                    {trade.screenshot_url && <ImageIcon size={16} color="var(--accent-primary)" />}
-                  </td>
                   <td>{new Date(trade.entry_time).toLocaleDateString()}</td>
                   <td>{trade.entry_price}</td>
                   <td>{trade.exit_price || '-'}</td>
                   <td className={trade.pips >= 0 ? 'text-profit' : 'text-loss'}>
-                    {trade.pips > 0 ? '+' : ''}{trade.pips || '-'}
+                    {trade.pips > 0 ? '+' : ''}{trade.pips != null ? Number(trade.pips).toFixed(2) : '-'}
                   </td>
                   <td className={trade.pnl >= 0 ? 'text-profit' : 'text-loss'} style={{fontWeight: 600}}>
                     {trade.pnl >= 0 ? '+' : ''}${trade.pnl || '-'}

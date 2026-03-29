@@ -78,7 +78,7 @@ export function TradeDetails() {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span>Pips</span>
               <span className={isProfit ? 'text-profit' : 'text-loss'} style={{ fontWeight: 600 }}>
-                {isProfit ? '+' : ''}{trade.pips || '0'}
+                {isProfit ? '+' : ''}{trade.pips != null ? Number(trade.pips).toFixed(2) : '0.00'}
               </span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>

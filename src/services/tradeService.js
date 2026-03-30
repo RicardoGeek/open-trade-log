@@ -63,7 +63,7 @@ export const tradeService = {
     // We join the 'symbols' table automatically by specifying the foreign relation
     const { data, error } = await supabase
       .from('trades')
-      .select('*, symbols(name)')
+      .select('*, symbols(name), trade_indicators(indicator_id)')
       .eq('user_id', userId)
       .order('entry_time', { ascending: false });
 
@@ -72,7 +72,8 @@ export const tradeService = {
     // Flatten symbols(name) into symbol for frontend ease
     return data.map(t => ({
       ...t,
-      symbol: t.symbols?.name || 'Unknown'
+      symbol: t.symbols?.name || 'Unknown',
+      indicators: t.trade_indicators?.map(ti => ti.indicator_id) || []
     }));
   },
 

@@ -10,6 +10,7 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { TradeList } from './pages/Dashboard/TradeList';
 import { TradeForm } from './pages/Dashboard/TradeForm';
 import { TradeDetails } from './pages/Dashboard/TradeDetails';
+import { Settings } from './pages/Dashboard/Settings';
 
 export function App() {
   return (
@@ -26,6 +27,7 @@ export function App() {
             <Route path="trades/new" element={<TradeForm />} />
             <Route path="trades/:id" element={<TradeDetails />} />
             <Route path="trades/:id/edit" element={<TradeForm />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
         </Route>
       </Routes>

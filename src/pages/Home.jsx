@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart2, Activity, Target, BookOpen } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 import './Home.css'; // Let's use scoped styling for complex pages
 
 export function Home() {
+  useSEO({
+    title: 'TradeLog - Master Your Trading Edge',
+    description: 'The ultimate professional trading journal. Record and analyze symbol, entry, exit, P&L, indicator values, and screenshots.'
+  });
+  
   return (
     <div className="home-container">
       <nav className="home-nav">

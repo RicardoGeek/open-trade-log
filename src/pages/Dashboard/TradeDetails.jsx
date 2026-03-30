@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Edit2, Calendar, TrendingUp, ImageIcon } from 'lucide-react';
 import { tradeService } from '../../services/tradeService';
 import { useAuth } from '../../contexts/AuthContext';
+import { useSEO } from '../../hooks/useSEO';
 
 export function TradeDetails() {
   const { id } = useParams();
@@ -10,6 +11,11 @@ export function TradeDetails() {
   const { user } = useAuth();
   const [trade, setTrade] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+
+  useSEO({
+    title: trade ? `${trade.direction} ${trade.symbols?.name || 'Trade'} | TradeLog` : 'Trade Details | TradeLog',
+    description: trade ? `Viewing details for ${trade.direction} trade on ${trade.symbols?.name}.` : 'Detailed trade analysis and setup.'
+  });
 
   useEffect(() => {
     if (user && id) {

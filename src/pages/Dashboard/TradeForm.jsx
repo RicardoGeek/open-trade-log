@@ -6,6 +6,7 @@ import { useDropzone } from 'react-dropzone';
 import Select from 'react-select';
 import { tradeService } from '../../services/tradeService';
 import { useAuth } from '../../contexts/AuthContext';
+import { useSEO } from '../../hooks/useSEO';
 import 'react-datepicker/dist/react-datepicker.css';
 import './TradeForm.css';
 
@@ -14,6 +15,11 @@ export function TradeForm() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const isEditing = !!id;
+
+  useSEO({
+    title: isEditing ? 'Edit Trade | TradeLog' : 'New Trade | TradeLog',
+    description: 'Record or edit trade details including entry price, exit price, and technical indicators.'
+  });
 
   // React Select Theme specific for glassmorphism
   const customSelectStyles = {

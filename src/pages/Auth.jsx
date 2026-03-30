@@ -2,9 +2,15 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Target, Lock, Mail, User } from 'lucide-react';
 import { supabase } from '../services/supabaseClient';
+import { useSEO } from '../hooks/useSEO';
 import './Auth.css';
 
 export function Auth() {
+  useSEO({
+    title: 'Login to TradeLog',
+    description: 'Access your professional trading journal to analyze your performance and build your edge.'
+  });
+  
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [errorMSG, setErrorMSG] = useState('');
